@@ -1,8 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const app = express();
 
+dotenv.config();
 // Connect to MongoDB
-app.listen(8080, () => {
-    console.log('Server is running on port 8080');
+mongoose
+.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {
+    console.log('Connected to MongoDB');
+    app.listen(process.env.PORT, () => {
+        console.log(`Backend server is running on port ${process.env.PORT}`);
+    });
+})
+.catch((err) => {
+    console.log(err);
 });
