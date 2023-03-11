@@ -6,6 +6,7 @@ dotenv.config();
 
 // Import Routes
 const pinRoutes = require('./routes/pins')
+const userRoutes = require('./routes/users')
 // Middleware
 app.use(express.json());
 
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 
 // Route Middlewares
 app.use('/api/pins', pinRoutes);
+app.use('/api/users', userRoutes);
 
 // Connect to MongoDB
 mongoose
